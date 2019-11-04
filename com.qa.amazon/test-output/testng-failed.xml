@@ -3,14 +3,13 @@
 <suite guice-stage="DEVELOPMENT" name="Failed suite [Default suite]">
   <test thread-count="5" name="Default test(failed)">
     <classes>
-      <class name="com.amazonPageTest.amazonHomePageTest">
+      <class name="com.qa.amazonTest.amazonTestLoginPage">
         <methods>
-          <include name="setUP"/>
-          <include name="homePageTest"/>
           <include name="tearDown"/>
-          <include name="loginInToApp"/>
+          <include name="loginTest" invocation-numbers="2 3"/>
+          <include name="setUp"/>
         </methods>
-      </class> <!-- com.amazonPageTest.amazonHomePageTest -->
+      </class> <!-- com.qa.amazonTest.amazonTestLoginPage -->
     </classes>
   </test> <!-- Default test(failed) -->
 </suite> <!-- Failed suite [Default suite] -->
