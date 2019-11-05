@@ -10,9 +10,9 @@ import org.apache.poi.ss.usermodel.Sheet;
 import org.apache.poi.ss.usermodel.Workbook;
 import org.apache.poi.ss.usermodel.WorkbookFactory;
 
-import com.amazonTestBase.amazonBase;
+import com.amazonTestBase.AmazonBase;
 
-public class amazonUtility extends amazonBase {
+public class AmazonUtility extends AmazonBase {
 
 	public static String filePath = "C:\\Users\\prapatil0\\git\\testAmazon\\com.qa.amazon\\src\\main\\java\\com\\amazonTestdata\\amazonTestData.xlsx";
 	static Workbook wb;
