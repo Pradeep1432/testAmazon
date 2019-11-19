@@ -1,10 +1,5 @@
 package com.amazonPages;
 
-import static org.testng.Assert.assertEquals;
-
-import java.util.concurrent.TimeUnit;
-
-import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
@@ -30,30 +25,32 @@ public class AmazonLoginPage extends AmazonBase {
 	@FindBy(id = "signInSubmit")
 	WebElement signInBtn;
 
+	@FindBy(id = "auth-captcha-image")
+	WebElement captchaText;
+
+	@FindBy(id = "auth-captcha-guess")
+	WebElement captchaInput;
+
 	public AmazonLoginPage() {
 		PageFactory.initElements(driver, this);
 	}
-	
+
 	public void loginPageTitle() {
 		String LoginPageTitle = driver.getTitle();
 		Assert.assertEquals(LoginPageTitle, "Amazon Sign In");
 	}
 
 	public AmazonHomePage login(String UserName, String Password) {
-		//navLink.click();
+		// navLink.click();
 		wait.until(ExpectedConditions.visibilityOf(emailId));
 		emailId.sendKeys(UserName);
 		continueBtn.click();
 		password.sendKeys(Password);
 		signInBtn.click();
-		
-		WebElement captchaImage = driver.findElement(By.id("image-captcha-section"));
-						
-		if(captchaImage.isDisplayed()) {
-			System.out.println("Login Successfull");
-		} else
-			System.out.println("Login not successfull");		
-		
+
+		String captchaActualText = captchaText.getText();
+		System.out.println("captchaText is " + captchaActualText);
+
 		return new AmazonHomePage();
 	}
 

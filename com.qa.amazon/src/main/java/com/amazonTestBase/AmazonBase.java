@@ -1,10 +1,15 @@
 package com.amazonTestBase;
 
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.IOException;
 import java.util.Properties;
 import java.util.concurrent.TimeUnit;
 
+import org.apache.poi.hssf.record.FilePassRecord;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.asserts.SoftAssert;
 
@@ -14,17 +19,34 @@ public class AmazonBase {
 	public static Properties prop;
 	public static WebDriverWait wait;
 	public static SoftAssert softAssert;
+	public static Actions act;
 
-	public static void initialization() throws InterruptedException {
-		System.setProperty("webdriver.chrome.driver",
-				"C:\\Selenium\\SeleniumDrivers\\latestChromeDriver\\chromedriver.exe");
-		driver = new ChromeDriver();
+	String propPath = "C:\\Users\\prapatil0\\git\\testAmazon\\com.qa.amazon\\src\\main\\java\\com\\amazonProperties\\amazon.properties";
+	
+
+	public AmazonBase() {
+		try {
+			prop = new Properties();
+			FileInputStream filePath = new FileInputStream(propPath);
+			prop.load(filePath);
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+	}
+
+	public static void initialization() {
+		String browserName = prop.getProperty("browser");
+		if (browserName.equals("chrome")) {
+			System.setProperty("webdriver.chrome.driver",
+					"C:\\Selenium\\SeleniumDrivers\\latestChromeDriver\\chromedriver.exe");
+			driver = new ChromeDriver();
+		}
+
+		driver.get(prop.getProperty("url"));
 		driver.manage().window().maximize();
-		driver.get("https://amazon.in");
 		driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
-		Thread.sleep(4000);
 		wait = new WebDriverWait(driver, 30);
 		softAssert = new SoftAssert();
-		
+		act = new Actions(driver);
 	}
 }
