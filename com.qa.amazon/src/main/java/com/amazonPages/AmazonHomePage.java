@@ -50,17 +50,16 @@ public class AmazonHomePage extends AmazonBase {
 	public AmazonPLPage keywordSearch() {
 		searchTextBox.sendKeys("iPhone");
 		searchTextBox.sendKeys(Keys.ENTER);
-
 		return new AmazonPLPage();
 	}
 	
-	public AmazoncartPage cartPage() throws InterruptedException {
+	public AmazonCartPage cartPage() throws InterruptedException {
 		AmazonUtility.JSClick(cart);
 		Thread.sleep(5000);
 		String cartTitle = driver.getTitle();
 		System.out.println(cartTitle);
 		
-		return new AmazoncartPage();
+		return new AmazonCartPage();
 	}
 	
 }

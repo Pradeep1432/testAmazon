@@ -31,11 +31,11 @@ public class AmazonTestPLPage extends AmazonBase {
 	}
 
 	@Test(priority = 2)
-	public void amazonPLPTest() {
+	public void amazonPLPTest() throws InterruptedException {
 		amazonPLP.sortBy();
 		amazonPLP.selectDevice();
 	}
-
+	
 	@AfterMethod
 	public void teardown() {
 		driver.quit();

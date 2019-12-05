@@ -31,21 +31,25 @@ public class AmazonTestHomePage extends AmazonBase {
 		amazonUtil = new AmazonUtility();
 	}
 
-	@Test(priority = 1)
-	public void cartPage() throws InterruptedException {
-		amazonHP.cartPage();
-		
-	}
-
 	/*
-	 * @Test(priority = 2) public void homePageTitleTest() {
-	 * amazonHP.homePageTitle();
+	 * @Test(priority = 1) public void cartPage() throws InterruptedException {
+	 * amazonHP.cartPage();
 	 * 
-	 * amazonHP.signInLink(); amazonLP.loginPageTitle();
-	 * 
-	 * amazonHP.keywordSearch(); amazonPLP.searchResultText(); amazonPLP.sortBy();
-	 * amazonPLP.selectDevice(); }
+	 * }
 	 */
+
+	@Test(priority = 1)
+	public void homePageTitleTest() {
+		amazonHP.homePageTitle();
+	}
+	
+	@Test(priority=2)
+	public void productSearch() throws InterruptedException {
+		amazonHP.keywordSearch();
+		amazonPLP.searchResultText();
+		amazonPLP.sortBy();
+		amazonPLP.selectDevice();
+	}
 
 	@AfterMethod
 	public void tearDown() {
