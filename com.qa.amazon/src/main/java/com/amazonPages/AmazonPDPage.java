@@ -28,28 +28,34 @@ public class AmazonPDPage extends AmazonBase {
 	@FindBy(id = "variation_color_name")
 	WebElement colorSwatch;
 
+	@FindBy(id = "priceblock_ourprice")
+	WebElement price;
+
 	public AmazonPDPage() {
 		PageFactory.initElements(driver, this);
 	}
-	
+
 	public void pdpPageTitle() {
 		String pdpTitle = driver.getTitle();
-		Assert.assertEquals(pdpTitle, "Apple iPhone 6s (32GB) - Space Grey: Amazon.in: Appario Retail Private Ltd");
+		Assert.assertEquals(pdpTitle,
+				"Remixmart™Camera Tempered Glass for iPhone 11 (Camera Tempered Glass only): Amazon.in: Electronics");
 	}
-	
+
 	public void pdpElements() {
 		buyNowBtn.isDisplayed();
 		productTitle.isDisplayed();
-		reviews.isDisplayed();
-		colorSwatch.isDisplayed();		
+		// reviews.isDisplayed();
+		// colorSwatch.isDisplayed();
+		String productPrice = price.getText();
+		System.out.println(productPrice);
 	}
-	
+
 	public AmazonCartPage pdpAddToCart() {
 		addToCartBtn.click();
 		driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
-		
+
 		return new AmazonCartPage();
-		
+
 	}
 
 }

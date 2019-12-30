@@ -5,7 +5,8 @@
     <classes>
       <class name="com.qa.amazonTest.AmazonTestCartPage">
         <methods>
-          <include name="testCartPageTitle"/>
+          <include name="testCartPageElements"/>
+          <include name="tearDown"/>
           <include name="setUp"/>
         </methods>
       </class> <!-- com.qa.amazonTest.AmazonTestCartPage -->

@@ -1,15 +1,31 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
-<suite guice-stage="DEVELOPMENT" name="Failed suite [Suite]">
-  <test thread-count="5" name="Test(failed)">
+<suite guice-stage="DEVELOPMENT" name="Failed suite [Suite]" parallel="methods">
+  <test thread-count="5" name="Test(failed)" parallel="methods">
     <classes>
-      <class name="com.qa.amazonTest.AmazonTestLoginPage">
+      <class name="com.qa.amazonTest.AmazonTestHomePage">
         <methods>
-          <include name="setUp"/>
-          <include name="loginTest"/>
+          <include name="productSearch"/>
           <include name="tearDown"/>
+          <include name="setUp"/>
         </methods>
-      </class> <!-- com.qa.amazonTest.AmazonTestLoginPage -->
+      </class> <!-- com.qa.amazonTest.AmazonTestHomePage -->
+      <class name="com.qa.amazonTest.AmazonTestPDPage">
+        <methods>
+          <include name="PDPAddToCart"/>
+          <include name="tearDown"/>
+          <include name="setUp"/>
+          <include name="PDPageElementsTest"/>
+          <include name="PDPageTitleTest"/>
+        </methods>
+      </class> <!-- com.qa.amazonTest.AmazonTestPDPage -->
+      <class name="com.qa.amazonTest.AmazonTestPLPage">
+        <methods>
+          <include name="amazonPLPTest"/>
+          <include name="teardown"/>
+          <include name="setUp"/>
+        </methods>
+      </class> <!-- com.qa.amazonTest.AmazonTestPLPage -->
     </classes>
   </test> <!-- Test(failed) -->
 </suite> <!-- Failed suite [Suite] -->

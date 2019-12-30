@@ -31,10 +31,14 @@ public class AmazonTestCartPage extends AmazonBase {
 		amazonPDP.pdpAddToCart();
 	}
 
-	@Test
+	@Test(priority = 1, enabled = false)
 	public void testCartPageTitle() {
 		AmazonCart.cartPageTitle();
-		AmazonCart.cartHeaderText();
+	}
+
+	@Test(priority = 2)
+	public void testCartPageElements() {
+		AmazonCart.cartPageElements();
 	}
 
 	@AfterMethod

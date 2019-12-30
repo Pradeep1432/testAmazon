@@ -59,8 +59,26 @@ public class AmazonUtility extends AmazonBase {
 
 	public static void selectDropDownValue(WebElement ele, String value) {
 		Select select = new Select(ele);
-		select.deselectByValue(value);
+		select.selectByValue(value);
 	}
+
+	public static void selectDropDownIndex(WebElement ele, Integer No) {
+		Select select = new Select(ele);
+		select.selectByIndex(No);
+	}
+	
+	public static void selectDropDownByVisibleText(WebElement ele, String text) {
+		Select select = new Select(ele);
+		select.selectByVisibleText(text);
+	}
+	
+	public static void switchToFrameById(Integer index) {
+		driver.switchTo().frame(index);
+	}
+	
+	public static void switchToFrameEle(WebElement ele) {
+		driver.switchTo().frame(ele);
+	} 
 
 	public static void JSClick(WebElement ele) {
 		if (ele.isDisplayed() && ele.isEnabled()) {
@@ -89,7 +107,7 @@ public class AmazonUtility extends AmazonBase {
 	public static void doubleClick(WebElement ele) {
 		act.doubleClick();
 	}
-	
+
 	public static void rightClick(WebElement ele) {
 		act.contextClick(ele).build().perform();
 	}

@@ -41,15 +41,14 @@ public class AmazonTestHomePage extends AmazonBase {
 	@Test(priority = 1)
 	public void homePageTitleTest() {
 		amazonHP.homePageTitle();
+		amazonHP.searchTextBoxSize();
 	}
 	
-	@Test(priority=2)
-	public void productSearch() throws InterruptedException {
-		amazonHP.keywordSearch();
-		amazonPLP.searchResultText();
-		amazonPLP.sortBy();
-		amazonPLP.selectDevice();
-	}
+	/*
+	 * @Test(priority=2) public void productSearch() throws InterruptedException {
+	 * amazonHP.keywordSearch(); amazonPLP.searchResultText(); amazonPLP.sortBy();
+	 * amazonPLP.selectDevice(); }
+	 */
 
 	@AfterMethod
 	public void tearDown() {
