@@ -2,8 +2,11 @@ package com.amazonUtil;
 
 import java.io.File;
 import java.io.FileInputStream;
+import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.util.concurrent.TimeUnit;
+
+import javax.print.attribute.standard.Destination;
 
 import org.apache.commons.io.FileUtils;
 import org.apache.poi.EncryptedDocumentException;
@@ -26,32 +29,44 @@ public class AmazonUtility extends AmazonBase {
 		super();
 	}
 
-	public static String filePath = "C:\\Users\\prapatil0\\git\\testAmazon\\com.qa.amazon\\src\\main\\java\\com\\amazonTestdata\\amazonTestData.xlsx";
+	public static String Path = "C:\\Users\\prapatil0\\git\\testAmazon\\com.qa.amazon\\src\\main\\java\\com\\amazonTestdata\\amazonTestData.xlsx";
 	public static Workbook wb;
 	public static Sheet sheet;
 
-	public static Object[][] readTestData(String sheetName) throws EncryptedDocumentException, IOException {
-		FileInputStream file = new FileInputStream(filePath);
-		wb = WorkbookFactory.create(file);
-		sheet = wb.getSheet(sheetName);
+	public static Object[][] readTestData(String sheetName) {
+		try {
+			FileInputStream file = new FileInputStream(Path);
+			wb = new WorkbookFactory().create(file);
+			wb.getSheet(sheetName);
+		} catch (FileNotFoundException e) {
+			e.printStackTrace();
+		} catch (EncryptedDocumentException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 
+		// create a 2D object array
 		Object[][] data = new Object[sheet.getLastRowNum()][sheet.getRow(0).getLastCellNum()];
-		System.out.println(sheet.getLastRowNum() + "---" + sheet.getRow(0).getLastCellNum());
+		System.out.println(data);
 
 		for (int i = 0; i < sheet.getLastRowNum(); i++) {
-			for (int j = 0; j < sheet.getRow(0).getLastCellNum(); j++) {
+			for (int j = i + 1; j < sheet.getRow(0).getLastCellNum(); j++) {
 				data[i][j] = sheet.getRow(i + 1).getCell(j).toString();
 				System.out.println(data[i][j]);
 			}
 		}
 		return data;
 	}
-
-	public static void screenshot() throws IOException {
-		File srcFile = ((TakesScreenshot) driver).getScreenshotAs(OutputType.FILE);
+	
+	public void takeScreenshot() throws IOException {
+		File src = ((TakesScreenshot)driver).getScreenshotAs(OutputType.FILE);
 		String destination = System.getProperty("user.dir");
-		FileUtils.copyFile(srcFile, new File(destination + "/screenshot" + System.currentTimeMillis() + ".png"));
-	}
+		FileUtils.copyFile(src, new File(destination + "/screenshot" +System.currentTimeMillis() + ".png"));		
+	}	
+	
 
 	public static void mouseHover(WebElement ele) {
 		act.moveToElement(ele).perform();
@@ -66,19 +81,19 @@ public class AmazonUtility extends AmazonBase {
 		Select select = new Select(ele);
 		select.selectByIndex(No);
 	}
-	
+
 	public static void selectDropDownByVisibleText(WebElement ele, String text) {
 		Select select = new Select(ele);
 		select.selectByVisibleText(text);
 	}
-	
+
 	public static void switchToFrameById(Integer index) {
 		driver.switchTo().frame(index);
 	}
-	
+
 	public static void switchToFrameEle(WebElement ele) {
 		driver.switchTo().frame(ele);
-	} 
+	}
 
 	public static void JSClick(WebElement ele) {
 		if (ele.isDisplayed() && ele.isEnabled()) {

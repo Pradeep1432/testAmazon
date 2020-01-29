@@ -47,10 +47,7 @@ public class AmazonLoginPage extends AmazonBase {
 		continueBtn.click();
 		password.sendKeys(Password);
 		signInBtn.click();
-
-		String captchaActualText = captchaText.getText();
-		System.out.println("captchaText is " + captchaActualText);
-
+		
 		return new AmazonHomePage();
 	}
 
